@@ -1,5 +1,6 @@
 <?php
 
+use App\Exceptions\HttpNotFoundException;
 use Router\Router;
 
 require '../vendor/autoload.php';
@@ -13,4 +14,8 @@ $router->get('/posts', 'App\Controllers\BlogController@index');
 $router->get('/posts/{id}', 'App\Controllers\BlogController@show');
 $router->get('/tags/{id}/posts', 'App\Controllers\BlogController@byTags');
 
-$router->run();
+try {
+    $router->run();
+} catch (HttpNotFoundException $e) {
+    echo $e->notFoundError();
+}

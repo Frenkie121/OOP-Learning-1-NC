@@ -2,6 +2,7 @@
 
 namespace Router;
 
+use App\Exceptions\HttpNotFoundException;
 use Router\Route;
 
 class Router
@@ -31,7 +32,7 @@ class Router
             }
         }
 
-        return header('HTTP/1.0 404 Not Found');
+        throw new HttpNotFoundException("Requested page was not found");
     }
 
 
