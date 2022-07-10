@@ -15,7 +15,7 @@ class BlogController extends Controller
     {
         $post = new Post($this->getDB());
         $posts = $post->all();
-        
+
         return $this->view('posts.index', compact('posts'));
     }
 
@@ -23,7 +23,7 @@ class BlogController extends Controller
     {
         $post = new Post($this->getDB());
         $post = $post->findById($id);
-       
+        var_dump($post);
 
         return $this->view('posts.show', compact('post'));
     }
