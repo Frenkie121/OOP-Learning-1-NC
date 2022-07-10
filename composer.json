@@ -1,0 +1,16 @@
+{
+    "name": "training/oop",
+    "autoload": {
+        "psr-4": {
+            "Router\\" : "routes/",
+            "App\\" : "app/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Frenkie121",
+            "email": "danipacific232@gmail.com"
+        }
+    ],
+    "require": {}
+}
