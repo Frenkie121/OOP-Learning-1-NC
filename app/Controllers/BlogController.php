@@ -2,15 +2,15 @@
 
 namespace App\Controllers;
 
-class BlogController
+class BlogController extends Controller
 {
     public function index()
     {
-        echo 'Liste des articles';
+        return $this->view('posts.index');
     }
 
     public function show(int $id)
     {
-        echo 'Article numero ' . $id;
+        return $this->view('posts.show', compact('id'));
     }
 }
