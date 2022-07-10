@@ -4,8 +4,8 @@
 
 <div class="card mb-3">
         <div class="card-body">
-            <small><?= $post->created_at ?></small>
+            <small class="badge bg-info"><?= $post->getCreatedAt() ?></small>
             <p><?= $post->content ?></p>
-            <a href="/posts" class="btn btn-primary">Back</a>
+            <a href="/posts" class="btn btn-secondary">Back</a>
         </div>
     </div>

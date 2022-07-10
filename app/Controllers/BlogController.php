@@ -23,7 +23,6 @@ class BlogController extends Controller
     {
         $post = new Post($this->getDB());
         $post = $post->findById($id);
-        var_dump($post);
 
         return $this->view('posts.show', compact('post'));
     }
