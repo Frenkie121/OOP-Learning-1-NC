@@ -2,6 +2,8 @@
 
 namespace Router;
 
+use Database\DBConnection;
+
 class Route
 {
     public $matches;
@@ -33,7 +35,7 @@ class Route
     public function execute()
     {
         $params = explode('@', $this->action);
-        $controller = new $params[0]();
+        $controller = new $params[0](new DBConnection(DB_NAME, DB_HOST, DB_USERNAME, DB_PASSWORD)); // Init db connection after Controller instanciation
         $method = $params[1];
 
         return isset($this->matches[1]) ? $controller->$method($this->matches[1]) : $controller->$method();

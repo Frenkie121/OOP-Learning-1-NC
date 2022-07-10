@@ -11,6 +11,10 @@ class BlogController extends Controller
 
     public function show(int $id)
     {
+        $query = $this->db->getPDO()->query('SELECT title, content, created_at, updated_at FROM posts');
+        $posts = $query->fetchAll();
+        var_dump($posts);
+        
         return $this->view('posts.show', compact('id'));
     }
 }
