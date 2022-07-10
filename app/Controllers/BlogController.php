@@ -3,9 +3,18 @@
 namespace App\Controllers;
 
 use App\Models\Post;
+use App\Models\Tag;
 
 class BlogController extends Controller
 {
+    public function byTags(int $id)
+    {
+        $tag = new Tag($this->getDB());
+        $tag = $tag->findById($id);
+
+        return $this->view('posts.bytags', compact('tag'));
+    }
+
     public function welcome()
     {
         return $this->view('posts.welcome');
