@@ -2,19 +2,10 @@
 
 namespace App\Controllers;
 
-use App\Models\Post;
-use App\Models\Tag;
+use App\Models\{Post, Tag};
 
 class BlogController extends Controller
 {
-    public function byTags(int $id)
-    {
-        $tag = new Tag($this->getDB());
-        $tag = $tag->findById($id);
-
-        return $this->view('posts.bytags', compact('tag'));
-    }
-
     public function welcome()
     {
         return $this->view('posts.welcome');
@@ -30,9 +21,15 @@ class BlogController extends Controller
 
     public function show(int $id)
     {
-        $post = new Post($this->getDB());
-        $post = $post->findById($id);
+        $post = (new Post($this->getDB()))->findById($id);
 
         return $this->view('posts.show', compact('post'));
+    }
+    
+    public function byTags(int $id)
+    {
+        $tag = (new Tag($this->getDB()))->findById($id);
+
+        return $this->view('posts.bytags', compact('tag'));
     }
 }

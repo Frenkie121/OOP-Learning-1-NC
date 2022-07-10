@@ -1,15 +1,12 @@
 <?php $tag = $params['tag'] ?>
 
-<h1>Post for tag <?= $tag->name ?></h1>
+<h1>Posts for tag <?= $tag->name ?></h1>
 
-<?php foreach($tag->getPosts as $post) : ?>
+<?php foreach($tag->getPosts() as $post) : ?>
 
     <div class="card mb-3">
         <div class="card-body">
-            <h2><?= $post->title ?></h2>
-            <small class="text-info">Published at <?= $post->getCreatedAt() ?></small>
-            <p><?= $post->getReducedContent() ?></p>
-            <?= $post->getButton() ?>
+            <a href="/posts/<?= $post->id ?>"><?= $post->title ?></a>
         </div>
     </div>
 
