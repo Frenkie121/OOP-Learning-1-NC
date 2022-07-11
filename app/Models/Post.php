@@ -34,4 +34,21 @@ TAG;
             [$this->id]
         );
     }
+
+    public function update(int $id, array $data, ?array $relations = null)
+    {
+        parent::update($id, $data);
+
+        $statement = $this->db->getPDO()->prepare("DELETE FROM post_tag WHERE post_id = ?");
+        $result = $statement->execute([$id]);
+
+        foreach ($relations as $tagId) {
+            $statement = $this->db->getPDO()->prepare("INSERT INTO post_tag(post_id, tag_id) VALUES(?, ?)");
+            $statement->execute([$id, $tagId]);
+        }
+
+        if ($result) {
+            return true;
+        }
+    }
 }

@@ -23,12 +23,7 @@ abstract class Model
         return $this->query("SELECT * FROM {$this->table} WHERE id = ?", [$id], true);
     }
 
-    public function destroy(int $id)
-    {
-        return $this->query("DELETE FROM {$this->table} WHERE id = ?", [$id]);
-    }
-
-    public function update(int $id, array $data)
+    public function update(int $id, array $data, ?array $relations = null)
     {
         $sqlRequestPart = "";
         $i = 1;
@@ -44,6 +39,11 @@ abstract class Model
         return $this->query("UPDATE {$this->table} SET {$sqlRequestPart} WHERE id = :id", $data);
     }
 
+    public function destroy(int $id)
+    {
+        return $this->query("DELETE FROM {$this->table} WHERE id = ?", [$id]);
+    }
+
     public function query(string $query, array $param = null, bool $single = null)
     {
         $method = is_null($param) ? 'query' : 'prepare';
@@ -51,7 +51,7 @@ abstract class Model
         $statement->setFetchMode(PDO::FETCH_CLASS, get_class($this), [$this->db]);
 
         if (strpos($query, 'DELETE') === 0 
-            || strpos($query, 'CREATE') === 0 
+            || strpos($query, 'INSERT') === 0 
             || strpos($query, 'UPDATE') === 0
         ) {
             return $statement->execute($param);
