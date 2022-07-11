@@ -1,5 +1,18 @@
 <h1>Login</h1>
 
+<?php if (isset($_SESSION['errors'])): ?>
+
+  <?php foreach($_SESSION['errors'] as $columnErrors): ?>
+    <?php foreach($columnErrors as $errors): ?>
+      <div class="alert alert-danger">
+        <?php foreach ($errors as $error): ?>
+          <li><?= $error ?></li>
+        <?php endforeach ?>
+      </div>
+    <?php endforeach ?>
+  <?php endforeach ?>
+<?php endif ?>
+
 <?php App\Helper::flashMessage('error', 'danger') ?>
 
 <form action="/login" method="post">
@@ -16,5 +29,7 @@
         <button type="submit" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">Submit</button>
     </div>
 </form>
+
+<?php session_destroy() ?>
 
 <?php App\Helper::unsetMessage('error') ?>
