@@ -12,9 +12,14 @@ $router->get('/tags/{id}/posts', 'App\Controllers\BlogController@byTags');
 
 // Admin routes
 $router->get('/admin/posts', 'App\Controllers\Admin\PostController@index');
-$router->post('/admin/posts/{id}/delete', 'App\Controllers\Admin\PostController@destroy');
+
+$router->get('/admin/posts/create', 'App\Controllers\Admin\PostController@create');
+$router->post('/admin/posts/store', 'App\Controllers\Admin\PostController@store');
+
 $router->get('/admin/posts/{id}/edit', 'App\Controllers\Admin\PostController@edit');
 $router->post('/admin/posts/{id}', 'App\Controllers\Admin\PostController@update');
+
+$router->post('/admin/posts/{id}/delete', 'App\Controllers\Admin\PostController@destroy');
 
 try {
     $router->run();

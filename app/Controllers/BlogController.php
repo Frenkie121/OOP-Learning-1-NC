@@ -8,7 +8,10 @@ class BlogController extends Controller
 {
     public function welcome()
     {
-        return $this->view('posts.welcome');
+        $post = new Post($this->getDB());
+        $posts = $post->query("SELECT * FROM posts ORDER BY created_at DESC LIMIT 5");
+
+        return $this->view('posts.welcome', compact('posts'));
     }
 
     public function index()

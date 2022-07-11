@@ -23,13 +23,29 @@ abstract class Model
         return $this->query("SELECT * FROM {$this->table} WHERE id = ?", [$id], true);
     }
 
+    public function store(array $data, ?array $relations = null)
+    {
+        $columns = '';
+        $values = '';
+        $i = 1;
+
+        foreach ($data as $key => $value) {
+            $comma = $i === count($data) ? "" : ", ";
+            $columns .= "{$key}{$comma}";
+            $values .= ":{$key}{$comma}";
+            $i++;
+        }
+
+        return $this->query("INSERT INTO {$this->table} ($columns) VALUES($values)", $data);
+    }
+
     public function update(int $id, array $data, ?array $relations = null)
     {
         $sqlRequestPart = "";
         $i = 1;
 
         foreach ($data as $key => $value) {
-            $comma = $i === count($data) ? " " : ', ';
+            $comma = $i === count($data) ? "" : ', ';
             $sqlRequestPart .= "{$key} = :{$key}{$comma}";
             $i++;
         }

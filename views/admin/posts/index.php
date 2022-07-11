@@ -1,5 +1,7 @@
 <h1>Posts Dashboard</h1>
 
+<a href="/admin/posts/create" class="btn btn-success">Add new post</a>
+
 <table class="table table-striped table-inverse table-responsive">
     <thead class="thead-default">
         <tr>

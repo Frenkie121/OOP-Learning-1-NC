@@ -1,4 +1,4 @@
-<h1>Latests posts</h1>
+<h1>Posts</h1>
 
 <?php foreach($params['posts'] as $post) : ?>
 

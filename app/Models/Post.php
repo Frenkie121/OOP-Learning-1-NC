@@ -35,6 +35,20 @@ TAG;
         );
     }
 
+    public function store(array $data, ?array $relations = null)
+    {
+        parent::store($data);
+
+        $lastInsertPostId = parent::all()[0]->id;
+        
+        foreach ($relations as $tagId) {
+            $statement = $this->db->getPDO()->prepare("INSERT INTO post_tag(post_id, tag_id) VALUES(?, ?)");
+            $statement->execute([$lastInsertPostId, $tagId]);
+        }
+
+        return true;
+    }
+
     public function update(int $id, array $data, ?array $relations = null)
     {
         parent::update($id, $data);
