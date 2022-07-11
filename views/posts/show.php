@@ -7,7 +7,7 @@
         <small class="badge bg-info"><?= $post->getCreatedAt() ?></small>
         <div>
             <?php foreach($post->getTags() as $tag) : ?>
-                <a href="/tags/<?= $tag->id ?>/posts"><?= $tag->name ?></a>
+                <span class="badge bg-success"><a href="/tags/<?= $tag->id ?>/posts" class="text-white"><?= $tag->name ?></a></span>
             <?php endforeach ?>
         </div>
         <p><?= $post->content ?></p>

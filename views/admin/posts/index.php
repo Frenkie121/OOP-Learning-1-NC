@@ -15,7 +15,7 @@
                     <td scope="row"><?= $post->title ?></td>
                     <td scope="row"><?= $post->getCreatedAt() ?></td>
                     <td>
-                        <a href="" class="btn btn-primary">Edit</a>
+                        <a href="/admin/posts/<?= $post->id ?>/edit" class="btn btn-primary">Edit</a>
                         <form action="/admin/posts/<?= $post->id ?>/delete" class="d-inline" method="post">
                         <button type="submit" class="btn btn-danger">Delete</button>
                         </form>
