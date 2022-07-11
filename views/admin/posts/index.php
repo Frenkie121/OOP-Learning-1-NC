@@ -1,5 +1,7 @@
 <h1>Posts Dashboard</h1>
 
+<?php App\Helper::flashMessage('success', 'success') ?>
+
 <a href="/admin/posts/create" class="btn btn-success">Add new post</a>
 
 <table class="table table-striped table-inverse table-responsive">
@@ -33,3 +35,5 @@
             <?php endforeach ?>
         </tbody>
 </table>
+
+<?php App\Helper::unsetMessage('success') ?>
